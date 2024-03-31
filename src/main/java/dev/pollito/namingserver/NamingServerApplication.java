@@ -1,4 +1,4 @@
-package com.example.namingserver;
+package dev.pollito.namingserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

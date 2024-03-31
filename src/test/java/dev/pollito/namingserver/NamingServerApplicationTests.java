@@ -1,4 +1,4 @@
-package com.example.namingserver;
+package dev.pollito.namingserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
