@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2024-04-04T11:11:54Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: naming-server
+  name: naming-server
+  namespace: default
+  resourceVersion: "15028"
+  uid: 589e3f2d-b7e3-4323-ab7e-c46d8fa1c5ce
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 34.118.234.206
+  clusterIPs:
+  - 34.118.234.206
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30133
+    port: 8761
+    protocol: TCP
+    targetPort: 8761
+  selector:
+    app: naming-server
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 34.175.60.24

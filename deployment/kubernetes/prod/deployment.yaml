@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    autopilot.gke.io/resource-adjustment: '{"input":{"containers":[{"name":"spring-cloud-v2-naming-server"}]},"output":{"containers":[{"limits":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"requests":{"cpu":"500m","ephemeral-storage":"1Gi","memory":"2Gi"},"name":"spring-cloud-v2-naming-server"}]},"modified":true}'
+    autopilot.gke.io/warden-version: 2.7.52
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2024-04-04T11:11:31Z"
+  generation: 1
+  labels:
+    app: naming-server
+  name: naming-server
+  namespace: default
+  resourceVersion: "15399"
+  uid: 7f2407d0-7072-4e2d-b271-2fbef1cc3fb7
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: naming-server
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: naming-server
+    spec:
+      containers:
+      - image: pollitodev/spring-cloud-v2-naming-server:0.1.0-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: spring-cloud-v2-naming-server
+        resources:
+          limits:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
+          requests:
+            cpu: 500m
+            ephemeral-storage: 1Gi
+            memory: 2Gi
+        securityContext:
+          capabilities:
+            drop:
+            - NET_RAW
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: kubernetes.io/arch
+        operator: Equal
+        value: amd64
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2024-04-04T11:13:19Z"
+    lastUpdateTime: "2024-04-04T11:13:19Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2024-04-04T11:11:31Z"
+    lastUpdateTime: "2024-04-04T11:13:19Z"
+    message: ReplicaSet "naming-server-7c9cb68988" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
