@@ -20,13 +20,13 @@ spec:
           name: spring-cloud-v2-naming-server
           resources:
             limits:
-              cpu: 500m
+              cpu: 400m
               ephemeral-storage: 1Gi
-              memory: 2Gi
+              memory: 1.5Gi
             requests:
-              cpu: 500m
+              cpu: 300m
               ephemeral-storage: 1Gi
-              memory: 2Gi
+              memory: 1Gi
           securityContext:
             capabilities:
               drop:
