@@ -20,13 +20,13 @@ spec:
           name: spring-cloud-v2-naming-server
           resources:
             limits:
-              cpu: 400m
-              ephemeral-storage: 1Gi
-              memory: 1.5Gi
-            requests:
               cpu: 300m
               ephemeral-storage: 1Gi
-              memory: 1Gi
+              memory: 700Mi
+            requests:
+              cpu: 250m
+              ephemeral-storage: 1Gi
+              memory: 500Mi
           securityContext:
             capabilities:
               drop:
@@ -46,4 +46,4 @@ spec:
       targetPort: 8761
   selector:
     app: naming-server
-  type: LoadBalancer
+  type: ClusterIP
